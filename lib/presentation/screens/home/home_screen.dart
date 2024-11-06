@@ -18,11 +18,11 @@ class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
 
   List<Widget> tabs = [
-    const RadioTab(),
-    const SebhaTab(),
-    const HadithTab(),
-    const QuranTab(),
-    const SettingsTab(),
+    RadioTab(),
+    SebhaTab(),
+    HadithTab(),
+    QuranTab(),
+    SettingsTab(),
   ];
 
   @override
