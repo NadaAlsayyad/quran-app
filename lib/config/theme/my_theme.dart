@@ -20,5 +20,12 @@ class MyTheme {
       ),
       type: BottomNavigationBarType.fixed,
     ),
+    dividerColor: const Color(0xFFB7935F),
+    textTheme: const TextTheme(
+      labelMedium: TextStyle(
+          fontSize: 25, fontWeight: FontWeight.w500, color: Color(0xFF242424)),
+      titleMedium: TextStyle(
+          fontSize: 25, fontWeight: FontWeight.w400, color: Color(0xFF242424)),
+    ),
   );
 }
