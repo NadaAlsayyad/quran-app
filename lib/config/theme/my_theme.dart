@@ -23,7 +23,7 @@ class MyTheme {
     ),
     cardTheme: CardTheme(
       margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
-      color: ColorsManager.goldColor.withOpacity(0.7),
+      color: ColorsManager.goldColor,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       elevation: 14,
     ),
