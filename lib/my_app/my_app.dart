@@ -3,6 +3,7 @@ import 'package:islami/config/theme/my_theme.dart';
 import 'package:islami/core/routes_manager.dart';
 
 import '../presentation/screens/home/home_screen.dart';
+import '../presentation/screens/quran_details_screen/quran_details_screen.dart';
 import '../presentation/splash/splash_screen.dart';
 
 class MyApp extends StatelessWidget {
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       routes: {
         RoutesManager.splashRoute: (_) => const SplashScreen(),
         RoutesManager.homeRoute: (_) => HomeScreen(),
+        RoutesManager.quranDetailsRoute: (_) => QuranDetailsScreen(),
       },
       initialRoute: RoutesManager.splashRoute,
     );
