@@ -6,6 +6,10 @@ import 'package:islami/presentation/screens/home/tabs/quran_tab/quran_tab.dart';
 import 'package:islami/presentation/screens/home/tabs/radio_tab/radio_tab.dart';
 import 'package:islami/presentation/screens/home/tabs/sebha_tab/sebha_tab.dart';
 import 'package:islami/presentation/screens/home/tabs/settings_tab/settings_tab.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:islami/providers/hadith_provider.dart';
+import 'package:provider/provider.dart';
+import '../../../providers/settings_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -20,24 +24,29 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Widget> tabs = [
     RadioTab(),
     SebhaTab(),
-    HadithTab(),
+    ChangeNotifierProvider(
+        create: (context) => HadithProvider(), child: HadithTab()),
     QuranTab(),
     SettingsTab(),
   ];
 
   @override
   Widget build(BuildContext context) {
+    var myProvider = Provider.of<SettingsProvider>(context);
+
     return Stack(
       children: [
         Image.asset(
-          AssetsManager.lightBG,
+          myProvider.isLightTheme()
+              ? AssetsManager.lightBG
+              : AssetsManager.darkBG,
           fit: BoxFit.fill,
           width: double.infinity,
           height: double.infinity,
         ),
         Scaffold(
           appBar: AppBar(
-            title: const Text(StringsManager.appTitle),
+            title: Text(AppLocalizations.of(context)!.titleApp),
           ),
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: selectedIndex,
@@ -46,22 +55,22 @@ class _HomeScreenState extends State<HomeScreen> {
               selectedIndex = index;
               setState(() {});
             },
-            items: const [
+            items: [
               BottomNavigationBarItem(
                   icon: ImageIcon(AssetImage(AssetsManager.radioIcon)),
-                  label: StringsManager.radioLabel),
+                  label: AppLocalizations.of(context)!.radioTab),
               BottomNavigationBarItem(
                   icon: ImageIcon(AssetImage(AssetsManager.sebhaIcon)),
-                  label: StringsManager.sebhaLabel),
+                  label: AppLocalizations.of(context)!.sebhaTab),
               BottomNavigationBarItem(
                   icon: ImageIcon(AssetImage(AssetsManager.hadithIcon)),
-                  label: StringsManager.hadithLabel),
+                  label: AppLocalizations.of(context)!.hadithTab),
               BottomNavigationBarItem(
                   icon: ImageIcon(AssetImage(AssetsManager.quranIcon)),
-                  label: StringsManager.quranLabel),
+                  label: AppLocalizations.of(context)!.quranTab),
               BottomNavigationBarItem(
                   icon: Icon(Icons.settings),
-                  label: StringsManager.settingLabel),
+                  label: AppLocalizations.of(context)!.settingsTab),
             ],
           ),
           body: tabs[selectedIndex],
