@@ -8,4 +8,5 @@ class AssetsManager {
   static const String quranHeaderImage = 'assets/images/quran_header_image.png';
   static const String hadithHeaderImage =
       'assets/images/hadith_header_image.png';
+  static const String darkBG = 'assets/images/darkBG.jpg';
 }

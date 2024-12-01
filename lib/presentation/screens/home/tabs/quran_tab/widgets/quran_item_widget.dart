@@ -24,11 +24,9 @@ class QuranItemWidget extends StatelessWidget {
             Expanded(
                 child: Padding(
               padding: const EdgeInsets.all(4),
-              child: Text(
-                suraItem.versesNumber,
-                style: Theme.of(context).textTheme.titleMedium,
-                textAlign: TextAlign.center,
-              ),
+              child: Text(suraItem.suraName,
+                  style: Theme.of(context).textTheme.titleMedium,
+                  textAlign: TextAlign.center),
             )),
             VerticalDivider(
               color: (Theme.of(context).dividerColor),
@@ -38,10 +36,12 @@ class QuranItemWidget extends StatelessWidget {
             Expanded(
                 child: Padding(
               padding: const EdgeInsets.all(4),
-              child: Text(suraItem.suraName,
-                  style: Theme.of(context).textTheme.titleMedium,
-                  textAlign: TextAlign.center),
-            ))
+              child: Text(
+                suraItem.versesNumber,
+                style: Theme.of(context).textTheme.titleMedium,
+                textAlign: TextAlign.center,
+              ),
+            )),
           ],
         ),
       ),
