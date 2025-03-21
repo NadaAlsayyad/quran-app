@@ -5,7 +5,7 @@ import 'package:islami/presentation/screens/quran_details_screen/widgets/sura_ve
 import 'package:islami/providers/quran_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../../../providers/settings_provider.dart';
+import '../../../providers/theme_provider.dart';
 
 class QuranDetailsScreen extends StatelessWidget {
   const QuranDetailsScreen({super.key});
@@ -13,7 +13,9 @@ class QuranDetailsScreen extends StatelessWidget {
   //List<String> verses = [];
   @override
   Widget build(BuildContext context) {
-    var myProvider = Provider.of<SettingsProvider>(context);
+    //var myProvider = Provider.of<SettingsProvider>(context);
+    var themeProvider = Provider.of<ThemeProvider>(context);
+
     var quranProvider = Provider.of<QuranProvider>(context);
     SuraItem suraItem = ModalRoute.of(context)?.settings.arguments as SuraItem;
     if (quranProvider.verses.isEmpty)
@@ -23,7 +25,7 @@ class QuranDetailsScreen extends StatelessWidget {
           image: DecorationImage(
               fit: BoxFit.fill,
               image: AssetImage(
-                myProvider.isLightTheme()
+                themeProvider.isLightTheme()
                     ? AssetsManager.lightBG
                     : AssetsManager.darkBG,
               ))),

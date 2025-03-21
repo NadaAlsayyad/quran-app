@@ -2,16 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islami/presentation/screens/home/tabs/settings_tab/widget/language_bottom_sheet.dart';
 import 'package:islami/presentation/screens/home/tabs/settings_tab/widget/theme_bottom_sheet.dart';
+import 'package:islami/providers/language_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../../providers/settings_provider.dart';
+import '../../../../../providers/theme_provider.dart';
 
 class SettingsTab extends StatelessWidget {
   const SettingsTab({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var myProvider = Provider.of<SettingsProvider>(context);
+    //var myProvider = Provider.of<SettingsProvider>(context);
+    var themeProvider = Provider.of<ThemeProvider>(context);
+    var languageProvider = Provider.of<LanguageProvider>(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -37,7 +40,7 @@ class SettingsTab extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Text(
-                    myProvider.isLightTheme()
+                    themeProvider.isLightTheme()
                         ? AppLocalizations.of(context)!.light
                         : AppLocalizations.of(context)!.dark,
                     style: Theme.of(context).textTheme.headlineSmall)),
@@ -65,7 +68,9 @@ class SettingsTab extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Text(
-                    myProvider.currentLang == 'en' ? "English" : "العربية",
+                    languageProvider.currentLang == 'en'
+                        ? "English"
+                        : "العربية",
                     style: Theme.of(context).textTheme.headlineSmall)),
           ),
         ],
@@ -77,14 +82,14 @@ class SettingsTab extends StatelessWidget {
     // any builder is function give context and return widget because it's build widget
     showModalBottomSheet(
       context: context,
-      builder: (context) => ThemeBottomSheet(),
+      builder: (context) => const ThemeBottomSheet(),
     );
   }
 
   void showLanguageBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      builder: (context) => LanguageBottomSheet(),
+      builder: (context) => const LanguageBottomSheet(),
     );
   }
 }
