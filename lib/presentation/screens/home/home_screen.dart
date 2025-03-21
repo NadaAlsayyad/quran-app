@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islami/core/assets_manager.dart';
-import 'package:islami/core/strings_manager.dart';
 import 'package:islami/presentation/screens/home/tabs/hadith_tab/hadith_tab.dart';
 import 'package:islami/presentation/screens/home/tabs/quran_tab/quran_tab.dart';
 import 'package:islami/presentation/screens/home/tabs/radio_tab/radio_tab.dart';
 import 'package:islami/presentation/screens/home/tabs/sebha_tab/sebha_tab.dart';
 import 'package:islami/presentation/screens/home/tabs/settings_tab/settings_tab.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islami/providers/hadith_provider.dart';
 import 'package:provider/provider.dart';
-import '../../../providers/settings_provider.dart';
+
+import '../../../providers/theme_provider.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -22,22 +22,23 @@ class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
 
   List<Widget> tabs = [
-    RadioTab(),
-    SebhaTab(),
-    ChangeNotifierProvider(
-        create: (context) => HadithProvider(), child: HadithTab()),
     QuranTab(),
-    SettingsTab(),
+    ChangeNotifierProvider(
+        create: (context) => HadithProvider(), child: const HadithTab()),
+    const SebhaTab(),
+    const RadioTab(),
+    const SettingsTab(),
   ];
 
   @override
   Widget build(BuildContext context) {
-    var myProvider = Provider.of<SettingsProvider>(context);
+    //var myProvider = Provider.of<SettingsProvider>(context);
+    var themeProvider = Provider.of<ThemeProvider>(context);
 
     return Stack(
       children: [
         Image.asset(
-          myProvider.isLightTheme()
+          themeProvider.isLightTheme()
               ? AssetsManager.lightBG
               : AssetsManager.darkBG,
           fit: BoxFit.fill,
@@ -57,19 +58,19 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             items: [
               BottomNavigationBarItem(
-                  icon: ImageIcon(AssetImage(AssetsManager.radioIcon)),
-                  label: AppLocalizations.of(context)!.radioTab),
-              BottomNavigationBarItem(
-                  icon: ImageIcon(AssetImage(AssetsManager.sebhaIcon)),
-                  label: AppLocalizations.of(context)!.sebhaTab),
-              BottomNavigationBarItem(
-                  icon: ImageIcon(AssetImage(AssetsManager.hadithIcon)),
-                  label: AppLocalizations.of(context)!.hadithTab),
-              BottomNavigationBarItem(
-                  icon: ImageIcon(AssetImage(AssetsManager.quranIcon)),
+                  icon: const ImageIcon(AssetImage(AssetsManager.quranIcon)),
                   label: AppLocalizations.of(context)!.quranTab),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.settings),
+                  icon: const ImageIcon(AssetImage(AssetsManager.hadithIcon)),
+                  label: AppLocalizations.of(context)!.hadithTab),
+              BottomNavigationBarItem(
+                  icon: const ImageIcon(AssetImage(AssetsManager.sebhaIcon)),
+                  label: AppLocalizations.of(context)!.sebhaTab),
+              BottomNavigationBarItem(
+                  icon: const ImageIcon(AssetImage(AssetsManager.radioIcon)),
+                  label: AppLocalizations.of(context)!.radioTab),
+              BottomNavigationBarItem(
+                  icon: const Icon(Icons.settings),
                   label: AppLocalizations.of(context)!.settingsTab),
             ],
           ),

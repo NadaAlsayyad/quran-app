@@ -20,4 +20,8 @@ class SettingsProvider extends ChangeNotifier {
   bool isLightTheme() {
     return currentTheme == ThemeMode.light; // true
   }
+
+  bool isEnglish() {
+    return currentLang == 'en';
+  }
 }

@@ -4,14 +4,15 @@ import 'package:islami/presentation/screens/home/tabs/hadith_tab/hadith_tab.dart
 import 'package:provider/provider.dart';
 
 import '../../../core/assets_manager.dart';
-import '../../../providers/settings_provider.dart';
+import '../../../providers/theme_provider.dart';
 
 class HadithDetailsScreen extends StatelessWidget {
   const HadithDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var myProvider = Provider.of<SettingsProvider>(context);
+    //var myProvider = Provider.of<SettingsProvider>(context);
+    var themeProvider = Provider.of<ThemeProvider>(context);
 
     Hadith hadith = ModalRoute.of(context)?.settings.arguments as Hadith;
 
@@ -20,7 +21,7 @@ class HadithDetailsScreen extends StatelessWidget {
           image: DecorationImage(
               fit: BoxFit.fill,
               image: AssetImage(
-                myProvider.isLightTheme()
+                themeProvider.isLightTheme()
                     ? AssetsManager.lightBG
                     : AssetsManager.darkBG,
               ))),

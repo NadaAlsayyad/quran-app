@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:islami/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../../../providers/language_provider.dart';
 
 class LanguageBottomSheet extends StatelessWidget {
   const LanguageBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var myProvider = Provider.of<SettingsProvider>(context);
+    //var myProvider = Provider.of<SettingsProvider>(context);
+    var languageProvider = Provider.of<LanguageProvider>(context);
+
     return Container(
       padding: EdgeInsets.all(12),
       child: Column(
@@ -15,9 +18,9 @@ class LanguageBottomSheet extends StatelessWidget {
         children: [
           InkWell(
               onTap: () {
-                myProvider.changeAppLang('en');
+                languageProvider.changeAppLang('en');
               },
-              child: myProvider.currentLang == 'en'
+              child: languageProvider.currentLang == 'en'
                   ? buildSelectedLanguage(context, "English")
                   : buildUnSelectedLanguage(context, 'English')),
           const SizedBox(
@@ -25,9 +28,9 @@ class LanguageBottomSheet extends StatelessWidget {
           ),
           InkWell(
               onTap: () {
-                myProvider.changeAppLang('ar');
+                languageProvider.changeAppLang('ar');
               },
-              child: myProvider.currentLang == 'ar'
+              child: languageProvider.currentLang == 'ar'
                   ? buildSelectedLanguage(context, "العربية")
                   : buildUnSelectedLanguage(context, 'العربية'))
         ],
@@ -42,8 +45,8 @@ class LanguageBottomSheet extends StatelessWidget {
           selectedLanguage,
           style: Theme.of(context).textTheme.bodyLarge,
         ),
-        Spacer(),
-        Icon(Icons.check)
+        const Spacer(),
+        const Icon(Icons.check)
       ],
     );
   }
