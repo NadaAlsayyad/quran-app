@@ -13,7 +13,8 @@ class HadithTitleWidget extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.pushNamed(
-          context, RoutesManager.hadithDetailsRoute,
+          context,
+          RoutesManager.hadithDetailsRoute,
           arguments: hadith, // runtime polymorphism
         );
       },

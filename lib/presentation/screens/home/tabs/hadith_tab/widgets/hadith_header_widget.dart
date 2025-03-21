@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../../../../core/colors_manager.dart';
-import '../../../../../../core/strings_manager.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HadithHeaderWidget extends StatelessWidget {
   const HadithHeaderWidget({super.key});
@@ -12,12 +10,12 @@ class HadithHeaderWidget extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 4),
         alignment: Alignment.center,
         width: double.infinity,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
             border: Border.symmetric(
-                horizontal:
-                    BorderSide(color: ColorsManager.goldColor, width: 3))),
+                horizontal: BorderSide(
+                    color: Theme.of(context).dividerColor, width: 3))),
         child: Text(
-          StringsManager.elhadithLabel,
+          AppLocalizations.of(context)!.hadithLabel,
           style: Theme.of(context).textTheme.labelMedium,
         ));
   }
